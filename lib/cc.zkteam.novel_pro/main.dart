@@ -48,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String text = "";
+  List listData;
 
   void _incrementCounter() {
     getHttp();
@@ -67,7 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
           await Dio().get("http://yapi.zkteam.cc/mock/52/Novel/jsonNovel");
       print(response);
       setState(() {
-        dynamic data = response.data;
+        Map data = response.data;
+        listData = data['result'].toList();
         text = data['result'][0]['name'];
       });
     } catch (e) {
@@ -113,8 +115,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            Icon(Icons.local_airport,
-                size: 128, color: Colors.lightBlueAccent[700]),
+//            Column(
+//              children: <Widget>[
+//                Icon(Icons.local_airport,
+//                    size: 80, color: Colors.lightBlueAccent[700]),
+//
+//              ],
+//            ),
+            ListView.builder(
+                padding: EdgeInsets.all(10),
+                itemCount: listData == null ? 0 : listData.length,
+                itemExtent: 30,
+                itemBuilder: (BuildContext context, int index) {
+                  return Text(listData[index]['name']);
+                }),
             Icon(Icons.local_cafe,
                 size: 128, color: Colors.lightBlueAccent[700]),
           ]),
