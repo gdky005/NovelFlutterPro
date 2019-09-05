@@ -86,6 +86,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 unselectedLabelColor: Colors.white54,
                 indicatorColor: Colors.white,
                 indicatorSize: TabBarIndicatorSize.label,
+                indicatorWeight: 3,
                 tabs: [
                   Tab(icon: Icon(Icons.live_tv)),
                   Tab(icon: Icon(Icons.local_airport)),
