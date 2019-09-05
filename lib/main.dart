@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -7,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '小说',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: '小说'),
     );
   }
 }
@@ -45,8 +46,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String text = "";
 
   void _incrementCounter() {
+    getHttp();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -55,6 +58,25 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void getHttp() async {
+    try {
+      Response response =
+          await Dio().get("http://yapi.zkteam.cc/mock/52/Novel/jsonNovel");
+      print(response);
+      setState(() {
+        dynamic data = response.data;
+        text = data['result'][2]['sourceUrl'];
+      });
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -98,6 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            Text(text, style: Theme.of(context).textTheme.body1),
           ],
         ),
       ),
