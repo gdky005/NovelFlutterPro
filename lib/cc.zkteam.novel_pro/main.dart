@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    getHttp();
   }
 
   void getHttp() async {
