@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/utils/toast.dart';
 
 void main() => runApp(MyApp());
 
@@ -8,9 +10,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        primaryColor: Colors.blue,
         primarySwatch: Colors.blue,
+        accentColor: Colors.blue,
       ),
+      supportedLocales: [Locale('zh', 'CN')],
+      localizationsDelegates: [
+        //此处
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
       home: MyHomePage(),
     );
   }
@@ -57,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       print(response);
       setState(() {
         dynamic data = response.data;
-        text = data['result'][2]['sourceUrl'];
+        text = data['result'][0]['name'];
       });
     } catch (e) {
       print(e);
@@ -75,19 +86,56 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              '计数器：',
             ),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,
             ),
+            Text("第一本短小说名字："),
             Text(text, style: Theme.of(context).textTheme.body1),
           ],
         ),
       ),
       drawer: Drawer(
           child: Column(
-        children: <Widget>[DrawerHeader(child: Text("text!!! header!"))],
+        children: <Widget>[
+          DrawerHeader(
+            child: UserAccountsDrawerHeader(
+              currentAccountPicture: CircleAvatar(
+                  child: Image.network("http://gdky005.com/images/avatar.jpg")),
+              accountName: Text('孤独狂饮'),
+              accountEmail: Text('741227905@qq.com'),
+            ),
+          ),
+          ListTile(
+            title: Text('测试 Item'),
+            leading: Icon(Icons.title),
+            onTap: () {
+              Navigator.of(context).pop();
+              ZKToast.show(context, "测试的 Item");
+            },
+          ),
+          ListTile(
+              title: Text('... 添加更多条 ...'),
+              leading: Icon(Icons.more_horiz),
+              onTap: () {
+                Navigator.of(context).pop();
+                ZKToast.show(context, "请添加更多 Item 吧");
+              }),
+          AboutListTile(
+              icon: Icon(Icons.nature_people),
+              applicationName: "短小说",
+              applicationVersion: "1.0.0",
+              applicationIcon: CircleAvatar(child: Icon(Icons.near_me)),
+              applicationLegalese: "协议",
+              aboutBoxChildren: [
+                ListTile(
+                  title: Text('成员'),
+                  leading: Icon(Icons.people),
+                ),
+              ]),
+        ],
       )),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
