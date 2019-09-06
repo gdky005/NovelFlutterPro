@@ -25,13 +25,16 @@ class _NovelListState extends State<NovelList> {
     return ListView.builder(
         padding: EdgeInsets.all(10),
         itemCount: listData == null ? 0 : listData.length,
-        itemExtent: 30,
         itemBuilder: (BuildContext context, int index) {
           NovelListDataResult result = listData[index];
-          return Text("${result.name},"
-              " ${result.pid},"
-              " ${result.id},"
-              " ${result.url},");
+          return Column(
+            children: <Widget>[
+              Text("${result.name},"),
+              Text("${result.pid},"),
+              Text("${result.id},"),
+              Text("${result.url},"),
+            ],
+          );
         });
   }
 }
