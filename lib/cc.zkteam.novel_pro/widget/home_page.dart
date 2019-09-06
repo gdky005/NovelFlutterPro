@@ -155,6 +155,8 @@ class _HomePageState extends State<HomePage> {
                       ]),
                 ],
               )),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton(
             onPressed: _incrementCounter,
             tooltip: 'Increment',
