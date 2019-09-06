@@ -134,7 +134,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 size: 128, color: Colors.lightBlueAccent[700]),
           ]),
           drawer: Drawer(
+            elevation: 50,
               child: Column(
+                mainAxisSize:MainAxisSize.min,
             children: <Widget>[
               DrawerHeader(
                 padding: EdgeInsets.all(0),
@@ -142,9 +144,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     data: Theme.of(context)
                         .copyWith(primaryColor: Colors.transparent),
                     child: UserAccountsDrawerHeader(
-                      currentAccountPicture: CircleAvatar(
-                          child: Image.network(
-                              "https://www.gdky005.com/images/avatar.jpg")),
+                      currentAccountPicture: ClipOval(
+                        child: Image.network(
+                            'https://www.gdky005.com/images/avatar.jpg',
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover
+                        ),
+                      ),
                       accountName: Text('孤独狂饮'),
                       accountEmail: Text('741227905@qq.com'),
                     )),
