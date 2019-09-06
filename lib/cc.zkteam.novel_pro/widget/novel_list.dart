@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/data/novel_list_data_entity.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/utils/toast.dart';
 
 class NovelList extends StatefulWidget {
   final List<NovelListDataResult> listData;
@@ -28,24 +29,31 @@ class _NovelListState extends State<NovelList> {
         itemCount: listData == null ? 0 : listData.length,
         itemBuilder: (BuildContext context, int index) {
           NovelListDataResult result = listData[index];
-          return Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            elevation: 2,
-            color: Colors.white70,
-            margin: EdgeInsets.all(10),
-            child: Padding(
-                padding: EdgeInsets.all(50),
-                child: Column(
-                  children: <Widget>[
-                    Text("${result.id}"),
-                    Divider(),
-                    Text("${result.name}"),
+          String name = result.name;
+          return GestureDetector(
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+              elevation: 2,
+              color: Colors.white70,
+              margin: EdgeInsets.all(10),
+              child: Padding(
+                  padding: EdgeInsets.all(50),
+                  child: Column(
+                    children: <Widget>[
+                      Text("${result.id}"),
+                      Divider(),
+                      Text("${result.name}"),
 //                    Text("${result.pid},"),
 
 //                    Text("${result.url},"),
-                  ],
-                )),
+                    ],
+                  )),
+            ),
+            onTap: () {
+//              TODO 添加进入详情页面的事件
+              ZKToast.show(context, "点击了：$name");
+            },
           );
         });
   }
