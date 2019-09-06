@@ -27,7 +27,11 @@ class _NovelListState extends State<NovelList> {
         itemCount: listData == null ? 0 : listData.length,
         itemExtent: 30,
         itemBuilder: (BuildContext context, int index) {
-          return Text(listData[index].name);
+          NovelListDataResult result = listData[index];
+          return Text("${result.name},"
+              " ${result.pid},"
+              " ${result.id},"
+              " ${result.url},");
         });
   }
 }
