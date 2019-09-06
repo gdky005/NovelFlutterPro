@@ -7,7 +7,9 @@
  */
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/data/novel_list_data_entity.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/utils/toast.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/widget/novel_list.dart';
@@ -69,6 +71,20 @@ class _HomePageState extends State<HomePage> {
           appBar: AppBar(
             title: Text("短小说"),
             centerTitle: true,
+            actions: <Widget>[
+              InkWell(
+                onTap: () {
+                  ZKToast.show(context, "点击了搜索功能");
+                },
+                child: AspectRatio(
+                  child: Container(
+                    child: Icon(Icons.search),
+                    decoration: BoxDecoration(shape: BoxShape.circle),
+                  ),
+                  aspectRatio: 1,
+                ),
+              )
+            ],
             bottom: TabBar(
                 unselectedLabelColor: Colors.white54,
                 indicatorColor: Colors.white,
