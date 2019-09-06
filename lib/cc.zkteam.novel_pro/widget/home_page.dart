@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
           ),
           body: TabBarView(children: [
             TestWidget(_counter, _text),
-            NovelList(_listData),
+            SafeArea(child: NovelList(_listData)),
           ]),
           drawer: Drawer(
               elevation: 50,
