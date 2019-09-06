@@ -8,6 +8,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/data/novel_list_data_entity.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/utils/toast.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/widget/novel_list.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/widget/test_widget.dart';
@@ -43,11 +44,17 @@ class _HomePageState extends State<HomePage> {
     try {
       Response response =
           await Dio().get("http://yapi.zkteam.cc/mock/52/Novel/jsonNovel");
-      print(response);
+
+      dynamic data = response.data;
+      print(data);
+
+      NovelListDataEntity novelListDataEntity =
+          NovelListDataEntity.fromJson(data);
+      List<NovelListDataResult> novelListData = novelListDataEntity.result;
+
       setState(() {
-        Map data = response.data;
-        _listData = data['result'].toList();
-        _text = data['result'][0]['name'];
+        _listData = novelListData;
+        _text = novelListData[0].name;
       });
     } catch (e) {
       print(e);
