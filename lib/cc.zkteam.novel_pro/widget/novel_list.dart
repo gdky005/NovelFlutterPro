@@ -5,6 +5,7 @@
  * Time: 10:37
  * target: 端小说列表
  */
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/data/novel_list_data_entity.dart';
 
@@ -27,13 +28,20 @@ class _NovelListState extends State<NovelList> {
         itemCount: listData == null ? 0 : listData.length,
         itemBuilder: (BuildContext context, int index) {
           NovelListDataResult result = listData[index];
-          return Column(
-            children: <Widget>[
-              Text("${result.name},"),
-              Text("${result.pid},"),
-              Text("${result.id},"),
-              Text("${result.url},"),
-            ],
+          return Card(
+            margin: EdgeInsets.all(10),
+            child: Padding(
+                padding: EdgeInsets.all(50),
+                child: Column(
+                  children: <Widget>[
+                    Text("${result.id}"),
+                    Divider(),
+                    Text("${result.name}"),
+//                    Text("${result.pid},"),
+
+//                    Text("${result.url},"),
+                  ],
+                )),
           );
         });
   }
