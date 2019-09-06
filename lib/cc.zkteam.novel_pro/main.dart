@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.blue,
         primarySwatch: Colors.blue,
         accentColor: Colors.blue,
+        splashColor: Colors.white60,
+        highlightColor: Colors.white30,
       ),
       supportedLocales: [Locale('zh', 'CN')],
       localizationsDelegates: [
