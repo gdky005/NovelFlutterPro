@@ -68,6 +68,7 @@ class _HomePageState extends State<HomePage> {
         child: Scaffold(
           appBar: AppBar(
             title: Text("短小说"),
+            centerTitle: true,
             bottom: TabBar(
                 unselectedLabelColor: Colors.white54,
                 indicatorColor: Colors.white,
