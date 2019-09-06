@@ -29,6 +29,10 @@ class _NovelListState extends State<NovelList> {
         itemBuilder: (BuildContext context, int index) {
           NovelListDataResult result = listData[index];
           return Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            elevation: 2,
+            color: Colors.white70,
             margin: EdgeInsets.all(10),
             child: Padding(
                 padding: EdgeInsets.all(50),

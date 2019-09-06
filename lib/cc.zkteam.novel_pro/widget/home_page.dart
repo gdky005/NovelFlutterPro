@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                 indicatorWeight: 3,
                 tabs: [
                   Tab(icon: Icon(Icons.live_tv)),
-                  Tab(icon: Icon(Icons.local_airport)),
+                  Tab(icon: Icon(Icons.chrome_reader_mode)),
                 ]),
           ),
           body: TabBarView(children: [
