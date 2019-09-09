@@ -53,14 +53,29 @@ class CustomDrawer extends Drawer {
               },
             ),
             ListTile(
-                title: Text('... 添加更多条 ...'),
-                leading: Icon(Icons.more_horiz),
+                title: Text('收藏',style: TextStyle(fontSize: 16)),
+                leading: new Image.asset("images/collect.png",width:25,height:25),
                 onTap: () {
                   Navigator.of(context).pop();
-                  ZKToast.show(context, "请添加更多 Item 吧");
+                  ZKToast.show(context, "收藏");
+                }),
+            ListTile(
+                title: Text('设置',style: TextStyle(fontSize: 16)),
+                leading: new Image.asset("images/setting.png",width:25,height:25),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  ZKToast.show(context, "设置");
+                }),
+            ListTile(
+                title: Text('退出登录',style: TextStyle(fontSize: 16)),
+                leading:new Image.asset("images/logout.png",width:25,height:25),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  ZKToast.show(context, "退出登录");
                 }),
             AboutListTile(
-                icon: Icon(Icons.nature_people),
+
+                icon: new Image.asset("images/about.png",width:25,height:25),
                 applicationName: "短小说",
                 applicationVersion: "1.0.0",
                 applicationIcon: CircleAvatar(child: Icon(Icons.near_me)),
