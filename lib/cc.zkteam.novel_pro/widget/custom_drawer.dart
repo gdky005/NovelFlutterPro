@@ -43,11 +43,12 @@ class CustomDrawer extends Drawer {
                           "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567688759859&di=f00ae6e9b10ee3d5970b5f00567fce4f&imgtype=0&src=http%3A%2F%2Fimg.ph.126.net%2FlCFW6F0A46eced8IjrhWOQ%3D%3D%2F2570148012361858430.jpg"))),
             ),
             ListTile(
-              title: Text('测试 Item'),
+              title: Text('详情页面'),
               leading: Icon(Icons.title),
               onTap: () {
+                ZKToast.show(context, "详情页面");
                 Navigator.of(context).pop();
-                ZKToast.show(context, "测试的 Item");
+                Navigator.pushNamed(context, Constants.pageNovelDetail);
               },
             ),
             ListTile(
