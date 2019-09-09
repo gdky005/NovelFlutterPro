@@ -94,15 +94,19 @@ class _HomePageState extends State<HomePage> {
                 indicatorSize: TabBarIndicatorSize.label,
                 indicatorWeight: 3,
                 tabs: [
-                  Tab(icon: Icon(Icons.live_tv)),
                   Tab(icon: Icon(Icons.chrome_reader_mode)),
+                  Tab(icon: Icon(Icons.live_tv)),
                 ]),
           ),
           body: TabBarView(children: [
-            TestWidget(_counter, _text),
             SafeArea(child: NovelList(_listData)),
+            TestWidget(_counter, _text),
           ]),
-          drawer: CustomDrawer(user:UserEntity(nickName: "孤独狂欢", email: "741227905@qq.com", avatar: 'https://www.gdky005.com/images/avatar.jpg')),
+          drawer: CustomDrawer(
+              user: UserEntity(
+                  nickName: "孤独狂欢",
+                  email: "741227905@qq.com",
+                  avatar: 'https://www.gdky005.com/images/avatar.jpg')),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton(
