@@ -6,11 +6,6 @@ class CustomDrawer extends Drawer {
   CustomDrawer();
 
   @override
-  _CustomDrawer createState() => _CustomDrawer();
-}
-
-class _CustomDrawer extends State {
-  @override
   Widget build(BuildContext context) {
     return Drawer(
         elevation: 50,
@@ -70,3 +65,4 @@ class _CustomDrawer extends State {
         ));
   }
 }
+
