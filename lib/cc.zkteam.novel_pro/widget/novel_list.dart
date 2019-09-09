@@ -7,6 +7,7 @@
  */
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/Constants.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/data/novel_list_data_entity.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/utils/toast.dart';
 
@@ -30,6 +31,7 @@ class _NovelListState extends State<NovelList> {
         itemBuilder: (BuildContext context, int index) {
           NovelListDataResult result = listData[index];
           String name = result.name;
+          int pid = result.pid;
           return GestureDetector(
             child: Card(
               shape: RoundedRectangleBorder(
@@ -51,8 +53,13 @@ class _NovelListState extends State<NovelList> {
                   )),
             ),
             onTap: () {
-//              TODO 添加进入详情页面的事件
               ZKToast.show(context, "点击了：$name");
+
+              Navigator.pushNamed(context, Constants.pageNovelDetail,
+                  arguments: <String, String>{
+                    'name': name,
+                    'pid': pid.toString(),
+                  });
             },
           );
         });

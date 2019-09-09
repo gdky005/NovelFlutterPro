@@ -2,8 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class NovelDetailPage extends StatelessWidget {
+  BuildContext context;
+  String title;
+
   @override
   Widget build(BuildContext context) {
+    this.context = context;
+    var args = ModalRoute.of(context).settings.arguments;
+    print(args);
+    Map data = args as Map;
+    title = "${data["name"]}(${data["pid"]})";
+
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -41,7 +50,7 @@ class NovelDetailPage extends StatelessWidget {
   Widget _titleWidget() {
     return Container(
       child: Text(
-        '标题',
+        title,
         style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
