@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/data/novel_list_data_entity.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/data/user_entity.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/utils/toast.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/widget/novel_list.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/widget/test_widget.dart';
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
             TestWidget(_counter, _text),
             SafeArea(child: NovelList(_listData)),
           ]),
-          drawer:CustomDrawer(),
+          drawer: CustomDrawer(user:UserEntity(nickName: "孤独狂欢", email: "741227905@qq.com", avatar: 'https://www.gdky005.com/images/avatar.jpg')),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: FloatingActionButton(

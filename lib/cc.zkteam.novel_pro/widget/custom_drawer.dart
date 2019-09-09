@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/data/user_entity.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/utils/toast.dart';
 
 class CustomDrawer extends Drawer {
-  CustomDrawer();
+  UserEntity user;
+
+  CustomDrawer({this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -18,15 +21,20 @@ class CustomDrawer extends Drawer {
                   data: Theme.of(context)
                       .copyWith(primaryColor: Colors.transparent),
                   child: UserAccountsDrawerHeader(
-                    currentAccountPicture: ClipOval(
-                      child: Image.network(
-                          'https://www.gdky005.com/images/avatar.jpg',
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.cover),
-                    ),
-                    accountName: Text('孤独狂饮'),
-                    accountEmail: Text('741227905@qq.com'),
+                    currentAccountPicture: GestureDetector(
+                        onTap: () {
+                          ZKToast.show(context, "点击了头像");
+                        },
+                        child: ClipOval(
+                          child: Image.network(
+                            user.avatar,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.cover,
+                          ),
+                        )),
+                    accountName: Text(user.nickName),
+                    accountEmail: Text(user.email),
                   )),
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -65,4 +73,3 @@ class CustomDrawer extends Drawer {
         ));
   }
 }
-
