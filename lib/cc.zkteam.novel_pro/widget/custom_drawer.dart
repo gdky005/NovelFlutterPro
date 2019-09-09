@@ -74,7 +74,7 @@ class CustomDrawer extends Drawer {
                   ZKToast.show(context, "退出登录");
                 }),
             AboutListTile(
-
+                child:Text('关于',style: TextStyle(fontSize: 16)),
                 icon: new Image.asset("images/about.png",width:25,height:25),
                 applicationName: "短小说",
                 applicationVersion: "1.0.0",
