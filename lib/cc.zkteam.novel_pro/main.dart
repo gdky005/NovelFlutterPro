@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/Constants.dart';
 import 'package:novel_pro/cc.zkteam.novel_pro/widget/home_page.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/widget/novel_detail.dart';
 
 void main() => runApp(MyApp());
 
@@ -21,7 +23,11 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: HomePage(),
+      initialRoute: Constants.pageIndex,
+      routes: {
+        Constants.pageIndex: (context) => HomePage(),
+        Constants.pageNovelDetail: (context) => NovelDetailPage(),
+      },
     );
   }
 }

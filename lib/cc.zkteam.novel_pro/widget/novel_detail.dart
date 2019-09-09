@@ -1,24 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 
-
 class NovelDetailPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios,
-                size: 18, color: Theme.of(context).primaryColor),
+            icon: Icon(Icons.arrow_back_ios, size: 18, color: Colors.white),
             onPressed: () {
               Navigator.pop(context);
             },
           ),
           title: Text(
             '详情',
-            style: TextStyle(
-                fontWeight: FontWeight.w300, fontSize: 18.0),
+            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
           ),
           elevation: 0.0,
         ),
@@ -28,8 +24,8 @@ class NovelDetailPage extends StatelessWidget {
   Widget _novelDetail(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(
-            top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
+        padding:
+            EdgeInsets.only(top: 10.0, left: 20.0, right: 20.0, bottom: 10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
