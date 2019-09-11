@@ -47,9 +47,10 @@ class _NovelListState extends State<NovelList> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: NetworkImage(imageUrl),
-                  ),
+                      fit: BoxFit.cover,
+                      image: NetworkImage(imageUrl),
+                      colorFilter: ColorFilter.mode(
+                          Colors.white.withOpacity(0.4), BlendMode.saturation)),
                 ),
                 child: Padding(
                     padding: EdgeInsets.all(50),
