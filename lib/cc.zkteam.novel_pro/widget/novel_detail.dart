@@ -40,19 +40,22 @@ class _NovelDetailPageState extends State<NovelDetailPage> {
   Widget build(BuildContext context) {
     this.context = context;
 
-    var args = ModalRoute.of(context).settings.arguments;
-    print(args);
-
-    if (args != null) {
-      Map data = args as Map;
-      _title = data["name"];
-      _titleAndPid = "${data["name"]}(${data["pid"]})";
-      _pid = int.parse(data["pid"]);
-    }
+//    TODO 这里会一直执行，要放到合适的位置，这里只是兼容了一下。
     if (_pid == 0) {
-      _pid = 1616023257;
+      var args = ModalRoute.of(context).settings.arguments;
+      print(args);
+
+      if (args != null) {
+        Map data = args as Map;
+        _title = data["name"];
+        _titleAndPid = "${data["name"]}(${data["pid"]})";
+        _pid = int.parse(data["pid"]);
+      }
+      if (_pid == 0) {
+        _pid = 1616023257;
+      }
+      getData(_pid);
     }
-    getData(_pid);
 
     return Scaffold(
         body: CustomScrollView(
