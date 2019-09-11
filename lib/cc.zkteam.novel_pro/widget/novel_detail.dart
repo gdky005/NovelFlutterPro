@@ -10,6 +10,7 @@ class NovelDetailPage extends StatefulWidget {
 class _NovelDetailPageState extends State<NovelDetailPage> {
   BuildContext context;
   int _pid = 0;
+  String _titleAndPid = "";
   String _title = "xxx 标题 xxx";
   String _detailText = "xxx 内容 xxx";
   String _author = "xxx 作者 xxx";
@@ -44,7 +45,8 @@ class _NovelDetailPageState extends State<NovelDetailPage> {
 
     if (args != null) {
       Map data = args as Map;
-      _title = "${data["name"]}(${data["pid"]})";
+      _title = data["name"];
+      _titleAndPid = "${data["name"]}(${data["pid"]})";
       _pid = int.parse(data["pid"]);
     }
     if (_pid == 0) {
@@ -53,7 +55,11 @@ class _NovelDetailPageState extends State<NovelDetailPage> {
     getData(_pid);
 
     return Scaffold(
-        appBar: AppBar(
+        body: CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          floating: true,
+          snap: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios, size: 18, color: Colors.white),
             onPressed: () {
@@ -61,12 +67,17 @@ class _NovelDetailPageState extends State<NovelDetailPage> {
             },
           ),
           title: Text(
-            '详情',
+            _titleAndPid,
             style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18.0),
           ),
           elevation: 0.0,
         ),
-        body: _novelDetail(context));
+        SliverSafeArea(
+            sliver: SliverToBoxAdapter(
+          child: _novelDetail(context),
+        )),
+      ],
+    ));
   }
 
   Widget _novelDetail(BuildContext context) {
