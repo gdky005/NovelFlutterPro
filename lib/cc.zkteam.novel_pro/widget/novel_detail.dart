@@ -1,20 +1,56 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:novel_pro/cc.zkteam.novel_pro/data/novel_detail_entity.dart';
 
-class NovelDetailPage extends StatelessWidget {
+class NovelDetailPage extends StatefulWidget {
+  @override
+  _NovelDetailPageState createState() => _NovelDetailPageState();
+}
+
+class _NovelDetailPageState extends State<NovelDetailPage> {
   BuildContext context;
-  String title = "xxx 标题 xxx";
+  int _pid = 0;
+  String _title = "xxx 标题 xxx";
+  String _detailText = "xxx 内容 xxx";
+  String _author = "xxx 作者 xxx";
+
+  void getData(int pid) async {
+    try {
+      Response response = await Dio()
+          .get("http://yapi.zkteam.cc/mock/52/Novel/jsonSearch?pic=$pid");
+
+      dynamic data = response.data;
+      print(data);
+
+      NovelDetailEntity novelDetailEntity = NovelDetailEntity.fromJson(data);
+      NovelDetailResult novelDetailData = novelDetailEntity.result;
+
+      setState(() {
+        _title = novelDetailData.name;
+        _author = novelDetailData.author;
+        _detailText = novelDetailData.content;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     this.context = context;
+
     var args = ModalRoute.of(context).settings.arguments;
     print(args);
 
     if (args != null) {
       Map data = args as Map;
-      title = "${data["name"]}(${data["pid"]})";
+      _title = "${data["name"]}(${data["pid"]})";
+      _pid = int.parse(data["pid"]);
     }
+    if (_pid == 0) {
+      _pid = 1616023257;
+    }
+    getData(_pid);
 
     return Scaffold(
         appBar: AppBar(
@@ -53,11 +89,8 @@ class NovelDetailPage extends StatelessWidget {
   Widget _titleWidget() {
     return Container(
       child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w600,
-        ),
+        _title,
+        style: Theme.of(context).textTheme.title,
       ),
     );
   }
@@ -66,7 +99,7 @@ class NovelDetailPage extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(top: 20.0, bottom: 30.0),
       child: Text(
-        '时间',
+        _author,
         style: TextStyle(
           fontSize: 12.0,
           color: Colors.grey,
@@ -77,7 +110,10 @@ class NovelDetailPage extends StatelessWidget {
 
   Widget _detailsWeb() {
     return Container(
-      child: Html(data: '详情内容详情内容详情内容详情内容'),
+      child: Text(
+        _detailText,
+        style: Theme.of(context).textTheme.body1,
+      ),
     );
   }
 }

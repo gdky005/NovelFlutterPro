@@ -35,17 +35,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    getHttp();
+    getData();
   }
 
   void _incrementCounter() {
-    getHttp();
+    getData();
     setState(() {
       _counter++;
     });
   }
 
-  void getHttp() async {
+  void getData() async {
     try {
       Response response =
           await Dio().get("http://yapi.zkteam.cc/mock/52/Novel/jsonNovel");
